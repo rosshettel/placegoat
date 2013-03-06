@@ -50,6 +50,15 @@ $app->get('/:width', function($width) use($app) {
     $app->response()->redirect("/$width/$width", 303);
 });
 
+// Yakkity Yak
+$app->get('/yak/:width/:height', function($width, $height) {
+    echo "Yakkity yak. Come back later, Jack.";
+});
+
+$app->get('/yak/:width', function($width) use($app) {
+    //redirect to the yak width & height route
+    $app->response()->redirect("/yak/$width/$width", 303);
+});
 
 /**
  * Step 4: Run the Slim application
