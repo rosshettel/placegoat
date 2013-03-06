@@ -24,11 +24,6 @@ $app = new \Slim\Slim(array(
 
 /**
  * Step 3: Define the Slim application routes
- *
- * Here we define several Slim application routes that respond
- * to appropriate HTTP request methods. In this example, the second
- * argument for `Slim::get`, `Slim::post`, `Slim::put`, and `Slim::delete`
- * is an anonymous function.
  */
 
 // Homepage
@@ -38,10 +33,17 @@ $app->get('/', function() use($app) {
 
 // Width & Height
 $app->get('/:width/:height', function($width, $height) use($app) {
-    if($width > 1500 || $height > 1500) 
-        echo "Slow down, buddy. We don't have that many goats."; die();
+    if($width > 1500 || $height > 1500) {
+        echo "Slow down, buddy. We don't have that many goats."; 
+        die();
+    }
 
-    echo "$width X $height";
+    $response = $app->response();
+    $response['Content-Type'] = 'image/jpeg';
+
+    $goat = grabAGoat();
+    resizeAndServe($goat, $width, $height);
+    
 });
 
 // Width only
@@ -51,7 +53,7 @@ $app->get('/:width', function($width) use($app) {
 });
 
 // Yakkity Yak
-$app->get('/yak/:width/:height', function($width, $height) {
+$app->get('/yak/:width/:height', function($width, $height) use($app) {
     echo "Yakkity yak. Come back later, Jack.";
 });
 
@@ -59,6 +61,26 @@ $app->get('/yak/:width', function($width) use($app) {
     //redirect to the yak width & height route
     $app->response()->redirect("/yak/$width/$width", 303);
 });
+
+function resizeAndServe($imagePath, $newWidth, $newHeight) {
+    //read original image, get it's dimensions
+    $sourceImage = imagecreatefromjpeg($imagePath);
+    $sourceX = imagesx($sourceImage);
+    $sourceY = imagesy($sourceImage);
+
+    $destImage = imagecreatetruecolor($newWidth, $newHeight);
+    imagecopyresampled($destImage, $sourceImage, 0, 0, 0, 0, $newWidth, $newHeight, $sourceX, $sourceY);
+
+    header('Content-Type: image/jpeg');
+    imagejpeg($destImage);
+}
+
+function grabAGoat($dir = 'goats') {
+    $goats = glob($dir.'/*.*');
+    $goat = array_rand($goats);
+    return $goats[$goat];
+};
+
 
 /**
  * Step 4: Run the Slim application
