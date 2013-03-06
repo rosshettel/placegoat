@@ -4,7 +4,8 @@
 		<title>PlaceGoat</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<style>
-			.container { margin-top: 50px; }
+			.container { margin-top: 50px; color: white;}
+			body { background-color: #526F35; }
 		</style>
 	</head>
 </html>
@@ -21,6 +22,29 @@
 
 			<div class="span6">
 				<iframe width="400" height="225" src="http://www.youtube.com/embed/PpccpglnNf0" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span8">
+				<h2>Usage:</h2>
+
+				<p><strong>If you know the width and height:</strong></p>
+<pre>
+http://placegoat.com/200/200
+http://placegoat.com/width/height
+</pre>
+
+				<p><strong>If you want a square, just specify the width:</strong></p>
+<pre>
+http://placegoat.com/200
+http://placegoat.com/width
+</pre>
+
+				<p><strong>If you like yaks:</strong></p>
+<pre>
+http://placegoat.com/yak/200/200
+http://placegoat.com/yak/width/height
+</pre>
 			</div>
 		</div>
 		
