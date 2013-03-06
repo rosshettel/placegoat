@@ -31,24 +31,25 @@ $app = new \Slim\Slim(array(
  * is an anonymous function.
  */
 
+// Homepage
 $app->get('/', function() use($app) {
     $app->render('homeTemplate.php', array('test'=>'this is a test'));
 });
 
-// POST route
-$app->post('/post', function () {
-    echo 'This is a POST route';
+// Width & Height
+$app->get('/:width/:height', function($width, $height) use($app) {
+    if($width > 1500 || $height > 1500) 
+        echo "Slow down, buddy. We don't have that many goats."; die();
+
+    echo "$width X $height";
 });
 
-// PUT route
-$app->put('/put', function () {
-    echo 'This is a PUT route';
+// Width only
+$app->get('/:width', function($width) use($app) {
+    //just redirect them to the width & height route 
+    $app->response()->redirect("/$width/$width", 303);
 });
 
-// DELETE route
-$app->delete('/delete', function () {
-    echo 'This is a DELETE route';
-});
 
 /**
  * Step 4: Run the Slim application
