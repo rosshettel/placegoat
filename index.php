@@ -26,13 +26,33 @@ $app = new \Slim\Slim(array(
  * Step 3: Define the Slim application routes
  */
 
+///////////
 // Homepage
 $app->get('/', function() use($app) {
     $app->render('homeTemplate.php', array('test'=>'this is a test'));
 });
 
+/////////////
+// Goat, see?
+$app->get('/goatse/:width/:height', function($width, $height) use($app) {
+    if($width > 1500 || $height > 1500) {
+        echo "Slow down, buddy. We don't have that many goats.";
+        die();
+    }
+
+    $goat = "goats/goatsee.jpg";
+    resizeAndServe($goat, $width, $height);
+});
+
+$app->get('/goatse/:width', function($width) use($app) {
+    //redirect to the goatse width & height route
+    $app->response()->redirect("/goatse/$width/$width", 303);
+});
+
+//////////////
 // Yakkity Yak
-$app->get('/yak/:width/:height', function($width, $height) use($app) {
+$app->get('/yak/:width/:height', function($width, $height) use($app) { 
+    //we haven't made the yak part yet
     echo "Yakkity yak. Come back later, Jack.";
 });
 
@@ -41,15 +61,13 @@ $app->get('/yak/:width', function($width) use($app) {
     $app->response()->redirect("/yak/$width/$width", 303);
 });
 
+/////////////////
 // Width & Height
 $app->get('/:width/:height', function($width, $height) use($app) {
     if($width > 1500 || $height > 1500) {
         echo "Slow down, buddy. We don't have that many goats."; 
         die();
     }
-
-    $response = $app->response();
-    $response['Content-Type'] = 'image/jpeg';
 
     $goat = grabAGoat();
     resizeAndServe($goat, $width, $height);
@@ -71,9 +89,15 @@ function resizeAndServe($imagePath, $newWidth, $newHeight) {
     $sourceY = imagesy($sourceImage);
 
     $destImage = imagecreatetruecolor($newWidth, $newHeight);
+    //imagecopyresampled will cut a rectangle out of the source image
     imagecopyresampled($destImage, $sourceImage, 0, 0, 0, 0, $newWidth, $newHeight, $sourceX, $sourceY);
 
-    header('Content-Type: image/jpeg');
+    //send the image header
+    $app = \Slim\Slim::getInstance();
+    $response = $app->response();
+    $response['Content-Type'] = 'image/jpeg';
+
+    //send out the file contents to the browser
     imagejpeg($destImage);
 }
 
