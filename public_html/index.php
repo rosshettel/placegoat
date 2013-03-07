@@ -40,7 +40,7 @@ $app->get('/goatse/:width/:height', function($width, $height) use($app) {
         die();
     }
 
-    $goat = "goats/goatsee.jpg";
+    $goat = "./goatsee.jpg";
     resizeAndServe($goat, $width, $height);
 });
 
