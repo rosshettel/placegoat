@@ -6,6 +6,7 @@
 		<style>
 			.container { margin-top: 50px; color: white;}
 			body { background-color: #526F35; }
+			#testgoat { margin-top: 35px; }
 		</style>
 	</head>
 </html>
@@ -21,11 +22,11 @@
 			</div>
 
 			<div class="span6">
-				<iframe width="400" height="225" src="http://www.youtube.com/embed/PpccpglnNf0" frameborder="0" allowfullscreen></iframe>
+				<iframe width="410" height="235" src="http://www.youtube.com/embed/PpccpglnNf0" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 		<div class="row">
-			<div class="span8">
+			<div class="span7">
 				<h2>Usage:</h2>
 
 				<p><strong>If you know the width and height:</strong></p>
@@ -43,8 +44,15 @@ http://placegoat.com/width
 				<p><strong>If you like yaks:</strong></p>
 <pre>
 http://placegoat.com/yak/200/200
-http://placegoat.com/yak/width/height
 </pre>
+
+				<p><strong>If you're daring:</strong></p>
+<pre>
+http://placegoat.com/goatse/200/200
+</pre>
+			</div>
+			<div class="span5">
+				<img id="testgoat" src="index.php/330/380">
 			</div>
 		</div>
 		
