@@ -10,7 +10,7 @@
 /**
  * Step 1: Require the Slim Framework
  */
-require 'Slim/Slim.php';
+require '../Slim/Slim.php';
 
 \Slim\Slim::registerAutoloader();
 
@@ -19,7 +19,7 @@ require 'Slim/Slim.php';
  */
 $app = new \Slim\Slim(array(
     'debug'=>true,
-    'templates.path'=>'./templates'
+    'templates.path'=>'../templates'
 ));
 
 /**
