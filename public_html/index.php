@@ -34,6 +34,11 @@ $app->get('/', function() use($app) {
 
 /////////////
 // Goat, see?
+$app->get('/goatse/:width', function($width) use($app) {
+    //redirect to the goatse width & height route
+    $app->response()->redirect("/goatse/$width/$width", 303);
+});
+
 $app->get('/goatse/:width/:height', function($width, $height) use($app) {
     if($width > 1500 || $height > 1500) {
         echo "Slow down, buddy. We don't have that many goats.";
@@ -44,25 +49,26 @@ $app->get('/goatse/:width/:height', function($width, $height) use($app) {
     resizeAndServe($goat, $width, $height);
 });
 
-$app->get('/goatse/:width', function($width) use($app) {
-    //redirect to the goatse width & height route
-    $app->response()->redirect("/goatse/$width/$width", 303);
-});
-
 //////////////
 // Yakkity Yak
-$app->get('/yak/:width/:height', function($width, $height) use($app) { 
-    //we haven't made the yak part yet
-    echo "Yakkity yak. Come back later, Jack.";
-});
-
 $app->get('/yak/:width', function($width) use($app) {
     //redirect to the yak width & height route
     $app->response()->redirect("/yak/$width/$width", 303);
 });
 
+$app->get('/yak/:width/:height', function($width, $height) use($app) { 
+    //we haven't made the yak part yet
+    echo "Yakkity yak. Come back later, Jack.";
+});
+
+
 /////////////////
-// Width & Height
+// Normal Goats
+$app->get('/:width', function($width) use($app) {
+    //just redirect them to the width & height route 
+    $app->response()->redirect("/$width/$width", 303);
+});
+
 $app->get('/:width/:height', function($width, $height) use($app) {
     if($width > 1500 || $height > 1500) {
         echo "Slow down, buddy. We don't have that many goats."; 
@@ -73,13 +79,6 @@ $app->get('/:width/:height', function($width, $height) use($app) {
     resizeAndServe($goat, $width, $height);
     
 });
-
-// Width only
-$app->get('/:width', function($width) use($app) {
-    //just redirect them to the width & height route 
-    $app->response()->redirect("/$width/$width", 303);
-});
-
 
 
 function resizeAndServe($imagePath, $newWidth, $newHeight) {
