@@ -10,4 +10,3 @@ I wanted to learn some new software while strengthing my knowledge in others, so
 ### TO-DO
 * Add more goats
 * Also, some yaks
-* Add GitHub "fork me" banner, link to site
