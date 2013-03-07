@@ -29,7 +29,7 @@
 			<div class="span6">
 				<h1>PlaceGOAT</h1>
 
-				<p>Tired of all these placeholder services that just cater to superficial celebrity worship? Missing farm animals in your designs? Have an unhealthy love of yelling goats?</p>
+				<p>Tired of all these placeholder services that just cater to superficial celebrity worship? Missing farm animals in your design mockups? Have an unhealthy love of yelling goats?</p>
 				<p><strong>You are welcome here, friend.</strong></p>
 			</div>
 
