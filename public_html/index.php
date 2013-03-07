@@ -26,6 +26,12 @@ $app = new \Slim\Slim(array(
  * Step 3: Define the Slim application routes
  */
 
+// Add an application-wide condition to width/height parameters
+\Slim\Route::setDefaultConditions(array(
+    'width'=>'[\d]*',
+    'height'=>'[\d]*'
+));
+
 ///////////
 // Homepage
 $app->get('/', function() use($app) {
