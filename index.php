@@ -31,6 +31,16 @@ $app->get('/', function() use($app) {
     $app->render('homeTemplate.php', array('test'=>'this is a test'));
 });
 
+// Yakkity Yak
+$app->get('/yak/:width/:height', function($width, $height) use($app) {
+    echo "Yakkity yak. Come back later, Jack.";
+});
+
+$app->get('/yak/:width', function($width) use($app) {
+    //redirect to the yak width & height route
+    $app->response()->redirect("/yak/$width/$width", 303);
+});
+
 // Width & Height
 $app->get('/:width/:height', function($width, $height) use($app) {
     if($width > 1500 || $height > 1500) {
@@ -52,15 +62,7 @@ $app->get('/:width', function($width) use($app) {
     $app->response()->redirect("/$width/$width", 303);
 });
 
-// Yakkity Yak
-$app->get('/yak/:width/:height', function($width, $height) use($app) {
-    echo "Yakkity yak. Come back later, Jack.";
-});
 
-$app->get('/yak/:width', function($width) use($app) {
-    //redirect to the yak width & height route
-    $app->response()->redirect("/yak/$width/$width", 303);
-});
 
 function resizeAndServe($imagePath, $newWidth, $newHeight) {
     //read original image, get it's dimensions
