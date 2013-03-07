@@ -52,7 +52,7 @@ http://placegoat.com/goatse/200/200
 </pre>
 			</div>
 			<div class="span5">
-				<img id="testgoat" src="index.php/330/380">
+				<img id="testgoat" src="/330/380">
 			</div>
 		</div>
 		
