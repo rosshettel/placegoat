@@ -62,6 +62,8 @@
 
 					<p>Tired of all these placeholder services that just cater to superficial celebrity worship? Missing farm animals in your design mockups? Have an unhealthy love of yelling goats?</p>
 					<p><strong>You are welcome here, friend.</strong></p>
+
+					<p>There have been <strong><?=$count?></strong> goats served!</p>
 				</div>
 
 				<div class="span6">

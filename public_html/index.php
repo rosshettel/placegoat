@@ -6,25 +6,16 @@
 * @version 0.1 beta
 */
 
-
-/**
- * Step 1: Require the Slim Framework
- */
 require '../Slim/Slim.php';
 
 \Slim\Slim::registerAutoloader();
 
-/**
- * Step 2: Instantiate a Slim application
- */
 $app = new \Slim\Slim(array(
     'debug'=>true,
     'templates.path'=>'../templates'
 ));
 
-/**
- * Step 3: Define the Slim application routes
- */
+$app->goatCountFile = "../goatcount.txt";
 
 // Add an application-wide condition to width/height parameters
 \Slim\Route::setDefaultConditions(array(
@@ -35,7 +26,7 @@ $app = new \Slim\Slim(array(
 ///////////
 // Homepage
 $app->get('/', function() use($app) {
-    $app->render('homeTemplate.php', array('test'=>'this is a test'));
+    $app->render('homeTemplate.php', array('count'=>getNumberOfGoatsServed($app->goatCountFile)));
 });
 
 /////////////
@@ -102,8 +93,23 @@ function resizeAndServe($imagePath, $newWidth, $newHeight) {
     $response = $app->response();
     $response['Content-Type'] = 'image/jpeg';
 
+    //update the goat count
+    updateGoatServedLog($goatCountFile);
+
     //send out the file contents to the browser
     imagejpeg($destImage);
+}
+
+function updateGoatServedLog($file) {
+    $currentGoatCount = getNumberOfGoatsServed($file);
+    
+    $currentGoatCount++;
+    file_put_contents($file, $currentGoatCount);
+}
+
+function getNumberOfGoatsServed($file) {
+    $currentGoatCount = (int) file_get_contents($file);
+    return $currentGoatCount;
 }
 
 function grabAGoat($dir = 'goats') {
@@ -112,11 +118,4 @@ function grabAGoat($dir = 'goats') {
     return $goats[$goat];
 };
 
-
-/**
- * Step 4: Run the Slim application
- *
- * This method should be called last. This executes the Slim application
- * and returns the HTTP response to the HTTP client.
- */
 $app->run();
