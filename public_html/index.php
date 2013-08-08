@@ -46,19 +46,6 @@ $app->get('/goatse/:width/:height', function($width, $height) use($app) {
     resizeAndServe($goat, $width, $height);
 });
 
-//////////////
-// Yakkity Yak
-$app->get('/yak/:width', function($width) use($app) {
-    //redirect to the yak width & height route
-    $app->response()->redirect("/yak/$width/$width", 303);
-});
-
-$app->get('/yak/:width/:height', function($width, $height) use($app) { 
-    //we haven't made the yak part yet
-    echo "Yakkity yak. Come back later, Jack.";
-});
-
-
 /////////////////
 // Normal Goats
 $app->get('/:width', function($width) use($app) {

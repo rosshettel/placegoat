@@ -87,11 +87,6 @@ http://placegoat.com/200
 http://placegoat.com/width
 </pre>
 
-				<p><strong>If you like yaks:</strong></p>
-<pre>
-http://placegoat.com/yak/200/200
-</pre>
-
 				<p><strong>If you're daring:</strong></p>
 <pre>
 http://placegoat.com/goatse/200/200
