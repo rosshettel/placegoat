@@ -81,7 +81,7 @@ function resizeAndServe($imagePath, $newWidth, $newHeight) {
     $response['Content-Type'] = 'image/jpeg';
 
     //update the goat count
-    updateGoatServedLog($app->$goatCountFile);
+    updateGoatServedLog($app->goatCountFile);
 
     //send out the file contents to the browser
     imagejpeg($destImage);
