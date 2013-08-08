@@ -9,4 +9,5 @@ I wanted to learn some new software while strengthing my knowledge in others, so
 
 ### TO-DO
 * Add more goats
-* Also, some yaks
+* Add a goat counter
+* ~~Also, some yaks~~
