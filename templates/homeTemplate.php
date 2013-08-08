@@ -3,6 +3,9 @@
 	<head>
 		<title>PlaceGoat</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+		<script src="js/jquery.flipCounter.1.2.pack.js" type="text/javascript"></script>
+
 		<script type="text/javascript">
 		  var _gaq = _gaq || [];
 		  _gaq.push(['_setAccount', 'UA-39096722-1']);
@@ -15,6 +18,7 @@
 		  })();
 
 		</script>
+
 		<style>
 			.container { color: white; }
 			body { background-color: #526F35; }
@@ -38,6 +42,14 @@
 			#footer { background-color: #748b5d; }
 			#footer p {margin: 10px 0; }
 			#footer a {color: white; text-decoration: underline; }
+
+			p.goats-served {
+				font-size: 40px;
+				line-height: 40px;
+				margin: 15px 0;
+				font-weight: normal;
+				text-align: center;
+			}
 
 			/* Lastly, apply responsive CSS fixes as necessary */
 			@media (max-width: 767px) {
@@ -63,7 +75,12 @@
 					<p>Tired of all these placeholder services that just cater to superficial celebrity worship? Missing farm animals in your design mockups? Have an unhealthy love of yelling goats?</p>
 					<p><strong>You are welcome here, friend.</strong></p>
 
-					<p>There have been <strong><?=$count?></strong> goats served!</p>
+					<p class="goats-served">
+						<span id="goat_counter"></span>
+						goats served!	
+					</p>
+					
+					<!-- <p>There have been <strong><?=$count?></strong> goats served!</p> -->
 				</div>
 
 				<div class="span6">
@@ -106,3 +123,17 @@ http://placegoat.com/goatse/200/200
 		</div>
 	</div>
 </body>
+<script>
+	jQuery(document).ready(function($) {
+		setTimeout(function() {	//wait just a bit for youtube video to load
+			$("#goat_counter").flipCounter(
+				"startAnimation", {
+					number: 1000,
+					end_number: <?=$count?>,
+					duration: 1000
+				}
+			);
+		} ,500)
+		
+	})
+</script>
