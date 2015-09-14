@@ -19,6 +19,7 @@
   "homepage": "http://placegoat.com",
   "dependencies": {
     "express": "^4.13.3",
-    "gm": "^1.18.1"
+    "gm": "^1.18.1",
+    "jsonfile": "^2.2.1"
   }
 }
