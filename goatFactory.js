@@ -26,9 +26,11 @@ var GoatFactory = function () {
         jsonFile.readFile(COUNT_FILE, function (err, file) {
             if (err) {
                 console.log('Error reading file:', err);
+                file = { count: 6113 };
             }
 
             file.count++;
+            process.env.GOAT_COUNT = file.count;
             console.log('updated count', file);
 
             jsonFile.writeFile(COUNT_FILE, file, function (err) {
