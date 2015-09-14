@@ -1,0 +1,29 @@
+{
+  "name": "placegoat",
+  "version": "2.0.0",
+  "description": "A placeholder image service, for goats.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "debug": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rosshettel/placegoat.git"
+  },
+  "author": "Ross Hettel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rosshettel/placegoat/issues"
+  },
+  "homepage": "http://placegoat.com",
+  "dependencies": {
+    "express": "^4.13.3",
+    "gm": "^1.18.1",
+    "jsonfile": "^2.2.1"
+  },
+  "engines": {
+    "node": "4.0.0"
+  }
+}
