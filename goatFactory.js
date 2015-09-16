@@ -16,7 +16,9 @@ var GoatFactory = function () {
         self.updateGoatsServedCount();
 
         gm(goat)
-            .resize(params.width, params.height)
+            .resize(params.width, params.height, '^')
+            .gravity('Center')
+            .crop(params.width, params.height)
             .toBuffer(function (err, buffer) {
                 callback(err, buffer);
             });
