@@ -21,7 +21,8 @@
   "dependencies": {
     "express": "^4.13.3",
     "gm": "^1.18.1",
-    "jsonfile": "^2.2.1"
+    "jsonfile": "^2.2.2",
+    "twitter": "^1.2.5"
   },
   "engines": {
     "node": "4.0.0"
