@@ -18,30 +18,30 @@ app.get('/goatse/:width', function (req, res) {
     resizeAndServe({
         width: req.params.width,
         goatse: true
-    }, res);
+    }, req, res);
 });
 app.get('/goatse/:width/:height', function (req, res) {
     resizeAndServe({
         width: req.params.width,
         height: req.params.height,
         goatse: true
-    }, res);
+    }, req, res);
 });
 
 // Normal Goats
 app.get('/:width', function (req, res) {
     resizeAndServe({
         width: req.params.width
-    }, res);
+    }, req, res);
 });
 app.get('/:width/:height', function (req, res) {
     resizeAndServe({
         width: req.params.width,
         height: req.params.height
-    }, res);
+    }, req, res);
 });
 
-function resizeAndServe (params, res) {
+function resizeAndServe (params, req, res) {
     params.height = params.height || params.width;  //set height to width if it was not set
 
     params.width = parseInt(params.width, 10);
@@ -54,6 +54,8 @@ function resizeAndServe (params, res) {
     if (params.width > 1500 || params.height > 1500) {
         return res.status(413).send("Slow down, buddy. We don't have goats that big.");
     }
+
+    console.log('Request for %d x %d from %s - Referrer:', params.width, params.height, req.ip, req.get('Referrer'));
 
     GoatFactory.grabAGoat(params, function (err, goat) {
         if (err) {

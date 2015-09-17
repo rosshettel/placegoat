@@ -19,8 +19,6 @@ var GoatFactory = function () {
     this.grabAGoat = function (params, callback) {
         var goat = params.goatse ? GOATSE : self.getRandomGoat();
 
-        console.log('Serving %s at dimensions %d x %d', goat, params.width, params.height);
-
         gm(goat)
             .resize(params.width, params.height, '^')
             .gravity('Center')
