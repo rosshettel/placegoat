@@ -21,8 +21,6 @@ var GoatFactory = function () {
 
         console.log('Serving %s at dimensions %d x %d', goat, params.width, params.height);
 
-        self.updateGoatsServedCount();
-
         gm(goat)
             .resize(params.width, params.height, '^')
             .gravity('Center')
