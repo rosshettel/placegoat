@@ -56,6 +56,7 @@ function resizeAndServe (params, req, res) {
     }
 
     console.log('Request for %d x %d from %s - Referrer:', params.width, params.height, req.ip, req.get('Referrer'));
+    console.log('Headers', req.headers);
 
     GoatFactory.grabAGoat(params, function (err, goat) {
         if (err) {
