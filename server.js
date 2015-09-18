@@ -55,7 +55,7 @@ function resizeAndServe (params, req, res) {
         return res.status(413).send("Slow down, buddy. We don't have goats that big.");
     }
 
-    console.log('Request for %d x %d from %s [Referrer: %s, Host: %s]', params.width, params.height, req.get('x-forwarded-for'), req.get('Referrer'), req.get('Host'));
+    console.log('Request for %d x %d from %s - Referrer: %s', params.width, params.height, req.get('x-forwarded-for'), req.get('Referrer'));
 
     GoatFactory.grabAGoat(params, function (err, goat) {
         if (err) {
