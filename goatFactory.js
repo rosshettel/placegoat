@@ -8,7 +8,6 @@ var GoatFactory = function () {
             access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
             access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
         }),
-        jsonfile = require('jsonfile'),
         logger = require('./logger'),
         self = this;
 
@@ -55,13 +54,6 @@ var GoatFactory = function () {
 
             //that's the count, increment it
             lastCount++;
-
-            //write it to the json file too, that works pretty well for the frontend
-            jsonfile.writeFile(COUNT_FILE, {count: lastCount}, function (err) {
-                if (err) {
-                    logger.error('Error writing count file:', err);
-                }
-            });
 
             //send out a tweet with the new count
             var tweet = {status: "I just served someone a #goat! That's " + lastCount + " goats served!"};
