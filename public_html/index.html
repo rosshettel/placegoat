@@ -164,13 +164,15 @@ http://placegoat.com/goatse/200/200
 <script>
     jQuery(document).ready(function ($) {
         $.getJSON('count.json', function (data) {
-            $("#goat_counter").flipCounter(
-                    "startAnimation", {
-                        number: 1000,
-                        end_number: data.count,
-                        duration: 1000
-                    }
-            );
+            setTimeout(function () {
+                $("#goat_counter").flipCounter(
+                        "startAnimation", {
+                            number: 1000,
+                            end_number: data.count,
+                            duration: 1000
+                        }
+                );
+            }, 450);
         });
     });
 </script>
