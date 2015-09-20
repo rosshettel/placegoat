@@ -15,6 +15,16 @@ app.get('/', function (req, res) {
     res.send(__dirname + '/public_html/index.html');
 });
 
+app.get('/count.json', function (req, res) {
+    GoatFactory.getGoatsServedCount(function (err, count) {
+        if (err) {
+            res.send(500);
+        } else {
+            res.set('Content-Type', 'application/json');
+            res.send({count: count});
+        }
+    });
+});
 
 // Goat, see?
 app.get('/goatse/:width', function (req, res) {

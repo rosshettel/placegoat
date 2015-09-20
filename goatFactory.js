@@ -29,7 +29,7 @@ var GoatFactory = function () {
             });
     };
 
-    this.updateGoatsServedCount = function () {
+    this.getGoatsServedCount = function (callback) {
         twitter.get('statuses/user_timeline', {screen_name: 'placegoats'}, function (err, tweets) {
             if (err) {
                 logger.error('Error getting tweets:', err);
@@ -41,6 +41,17 @@ var GoatFactory = function () {
                     return TWEET_REGEX.exec(tweet.text);
                 }),
                 lastCount = TWEET_REGEX.exec(countTweets[0].text)[0];
+
+            callback(null, lastCount);
+        })
+    };
+
+    this.updateGoatsServedCount = function () {
+        self.getGoatsServedCount(function (err, lastCount) {
+            if (err) {
+                logger.error("Couldn't get goats served count");
+                return;
+            }
 
             //that's the count, increment it
             lastCount++;
