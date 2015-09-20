@@ -21,7 +21,6 @@
   "dependencies": {
     "express": "^4.13.3",
     "gm": "^1.18.1",
-    "jsonfile": "^2.2.2",
     "lodash.isnumber": "^3.0.1",
     "slack-winston": "0.0.3",
     "twitter": "^1.2.5",
