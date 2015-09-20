@@ -12,7 +12,7 @@ var winston = require('winston'),
             }),
             new slackWinston.Slack({
                 domain: 'highground',
-                webhook_url: 'https://hooks.slack.com/services/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',
+                webhook_url: process.env.SLACK_WEBHOOK,
                 channel: 'placegoat',
                 level: 'debug'
             })
