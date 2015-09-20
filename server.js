@@ -4,7 +4,10 @@ var express = require('express'),
     server = app.listen(port),
     goatFactory = require('./goatFactory'),
     isNumber = require('lodash.isnumber'),
-    GoatFactory = new goatFactory();
+    GoatFactory = new goatFactory(),
+    logger = require('./logger');
+
+logger.info('Server started');
 
 app.use(express.static(__dirname + '/public_html'));
 
@@ -55,11 +58,11 @@ function resizeAndServe (params, req, res) {
         return res.status(413).send("Slow down, buddy. We don't have goats that big.");
     }
 
-    console.log('Request for %d x %d from %s - Referrer: %s', params.width, params.height, req.get('x-forwarded-for'), req.get('Referrer'));
+    logger.info('Request for %d x %d from %s - Referrer: %s', params.width, params.height, req.get('x-forwarded-for'), req.get('Referrer'));
 
     GoatFactory.grabAGoat(params, function (err, goat) {
         if (err) {
-            console.log("Error serving goat:", err);
+            logger.error("Error serving goat:", err);
             res.status(500).send("Sorry, the goats started chewing on the server.");
         } else {
             GoatFactory.updateGoatsServedCount();

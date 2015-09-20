@@ -9,6 +9,7 @@ var GoatFactory = function () {
             access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
         }),
         jsonfile = require('jsonfile'),
+        logger = require('./logger'),
         self = this;
 
     const GOAT_DIR = __dirname + '/public_html/goats/';
@@ -31,7 +32,7 @@ var GoatFactory = function () {
     this.updateGoatsServedCount = function () {
         twitter.get('statuses/user_timeline', {screen_name: 'placegoats'}, function (err, tweets) {
             if (err) {
-                console.log('Error getting tweets:', err);
+                logger.error('Error getting tweets:', err);
                 return;
             }
 
@@ -47,7 +48,7 @@ var GoatFactory = function () {
             //write it to the json file too, that works pretty well for the frontend
             jsonfile.writeFile(COUNT_FILE, {count: lastCount}, function (err) {
                 if (err) {
-                    console.log('Error writing count file:', err);
+                    logger.error('Error writing count file:', err);
                 }
             });
 
@@ -55,7 +56,7 @@ var GoatFactory = function () {
             var tweet = {status: "I just served someone a #goat! That's " + lastCount + " goats served!"};
             twitter.post('statuses/update', tweet, function (err, tweet, response) {
                 if (err) {
-                    console.log('Error posting tweet:', err);
+                    logger.error('Error posting tweet:', err);
                 }
             });
         });

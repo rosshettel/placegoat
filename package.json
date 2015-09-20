@@ -23,7 +23,9 @@
     "gm": "^1.18.1",
     "jsonfile": "^2.2.2",
     "lodash.isnumber": "^3.0.1",
-    "twitter": "^1.2.5"
+    "slack-winston": "0.0.3",
+    "twitter": "^1.2.5",
+    "winston": "^1.0.1"
   },
   "engines": {
     "node": "4.0.0"
