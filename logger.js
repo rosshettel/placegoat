@@ -11,9 +11,9 @@ var winston = require('winston'),
                 }
             }),
             new slackWinston.Slack({
-                domain: 'highground',
+                domain: 'rosshettel',
                 webhook_url: process.env.SLACK_WEBHOOK,
-                channel: 'placegoat',
+                channel: 'placegoat-logs',
                 level: 'debug'
             })
         ]
