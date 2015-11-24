@@ -1,6 +1,6 @@
 var winston = require('winston'),
     slackWinston = require('slack-winston'),
-    slackWebhook = process.env.LOGGER_WEBHOOK || 'n/a',
+    slackWebhook = process.env.LOGGING_WEBHOOK || 'n/a',
     logger = new (winston.Logger)({
         transports: [
             new winston.transports.Console({
