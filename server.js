@@ -3,7 +3,7 @@ var express = require('express'),
     port = process.env.PORT || 3000,
     server = app.listen(port),
     goatFactory = require('./goatFactory'),
-    isNumber = require('lodash.isnumber'),
+    isFinite = require('lodash.isfinite'),
     GoatFactory = new goatFactory(),
     logger = require('./logger');
 
@@ -57,11 +57,16 @@ app.get('/:width/:height', function (req, res) {
 function resizeAndServe (params, req, res) {
     params.height = params.height || params.width;  //set height to width if it was not set
 
+    if (params.width.indexOf('.php') > -1) {
+        //handle script kiddies looking for PHP servers
+        return res.status(404).send("Cannot GET /" + params.width);
+    }
+
     params.width = parseInt(params.width, 10);
     params.height = parseInt(params.height, 10);
 
-    if (!isNumber(params.width) || !isNumber(params.height)) {
-        return res.status(400).send("You must provide a number!");
+    if (!isFinite(params.width) || !isFinite(params.height)) {
+        return res.status(404).send("You must provide a number!");
     }
 
     if (params.width > 1500 || params.height > 1500) {
