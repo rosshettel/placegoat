@@ -27,6 +27,6 @@
     "winston": "^1.0.1"
   },
   "engines": {
-    "node": "4.0.0"
+    "node": "4.x.x"
   }
 }
