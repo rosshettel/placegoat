@@ -59,7 +59,7 @@ function resizeAndServe (params, req, res) {
 
     if (params.width.indexOf('.php') > -1) {
         //handle script kiddies looking for PHP servers
-        logger.warn('Served a 404 to idiots looking for a .php file');
+        logger.warn('Served a 404 to idiots looking for a .php file. IP: %s', req.get('x-forwarded-for'));
         return res.status(404).send("Cannot GET /" + params.width);
     }
 
