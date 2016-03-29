@@ -7,7 +7,7 @@ var express = require('express'),
     GoatFactory = new goatFactory(),
     logger = require('./logger');
 
-logger.info('Server started');
+logger.info('Server started 🐐');
 
 app.use(express.static(__dirname + '/public_html'));
 
