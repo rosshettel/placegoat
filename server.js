@@ -2,9 +2,8 @@ var express = require('express'),
     app = express(),
     port = process.env.PORT || 3000,
     server = app.listen(port),
-    goatFactory = require('./goatFactory'),
+    GoatFactory = require('./goatFactory'),
     isFinite = require('lodash.isfinite'),
-    GoatFactory = new goatFactory(),
     logger = require('./logger');
 
 logger.info('Server started 🐐');

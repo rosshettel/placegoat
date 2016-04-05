@@ -9,7 +9,8 @@ var GoatFactory = function () {
             access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
         }),
         logger = require('./logger'),
-        self = this;
+        self = this,
+        cachedGoatCount;
 
     const GOAT_DIR = __dirname + '/public_html/goats/';
     const GOATSE = __dirname + '/public_html/goatsee.jpg';
@@ -29,20 +30,24 @@ var GoatFactory = function () {
     };
 
     this.getGoatsServedCount = function (callback) {
-        twitter.get('statuses/user_timeline', {screen_name: 'placegoats'}, function (err, tweets) {
-            if (err) {
-                logger.error('Error getting tweets:', err);
-                return;
-            }
+        if (cachedGoatCount) {
+            callback(null, cachedGoatCount);
+        } else {
+            twitter.get('statuses/user_timeline', {screen_name: 'placegoats'}, function (err, tweets) {
+                if (err) {
+                    logger.error('Error getting tweets:', err);
+                    return;
+                }
 
-            //find last tweet mentioning "goats served!"
-            var countTweets = tweets.filter(function (tweet) {
-                    return TWEET_REGEX.exec(tweet.text);
-                }),
-                lastCount = TWEET_REGEX.exec(countTweets[0].text)[0];
+                //find last tweet mentioning "goats served!"
+                var countTweets = tweets.filter(function (tweet) {
+                        return TWEET_REGEX.exec(tweet.text);
+                    });
 
-            callback(null, lastCount);
-        })
+                cachedGoatCount = TWEET_REGEX.exec(countTweets[0].text)[0];
+                callback(null, cachedGoatCount);
+            })
+        }
     };
 
     this.updateGoatsServedCount = function () {
@@ -54,6 +59,8 @@ var GoatFactory = function () {
 
             //that's the count, increment it
             lastCount++;
+            logger.debug('incremented goat count', lastCount);
+            logger.debug('cached goat count', cachedGoatCount);
 
             //send out a tweet with the new count
             var tweet = {status: "I just served someone a #goat! That's " + lastCount + " goats served!"};
@@ -71,4 +78,4 @@ var GoatFactory = function () {
     }
 };
 
-module.exports = GoatFactory;
+module.exports = new GoatFactory();
