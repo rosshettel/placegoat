@@ -59,6 +59,7 @@ var GoatFactory = function () {
 
             //that's the count, increment it
             lastCount++;
+            cachedGoatCount++;
             logger.debug('incremented goat count', lastCount);
             logger.debug('cached goat count', cachedGoatCount);
 
