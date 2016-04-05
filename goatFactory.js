@@ -60,9 +60,7 @@ var GoatFactory = function () {
             //that's the count, increment it
             lastCount++;
             cachedGoatCount++;
-            logger.debug('incremented goat count', lastCount);
-            logger.debug('cached goat count', cachedGoatCount);
-
+            
             //send out a tweet with the new count
             var tweet = {status: "I just served someone a #goat! That's " + lastCount + " goats served!"};
             twitter.post('statuses/update', tweet, function (err, tweet, response) {
