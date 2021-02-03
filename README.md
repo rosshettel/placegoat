@@ -1,6 +1,8 @@
 placeGoat
 =========
 
+**As of Feb 2022, this service is shut down for good. RIP to all the unit tests I wrote using this service for dummy data. So long and thanks for all the goats.**
+
 Placeholder services are cool. Goats are cool (Especially those yelling ones). placeGoat combines those two things.
 
 Technologies
